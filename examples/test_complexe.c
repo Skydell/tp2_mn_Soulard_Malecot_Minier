@@ -22,6 +22,8 @@ int main (int argc, char **argv)
 
  unsigned long long int start, end ;
  unsigned long long int start2, end2 ;
+ unsigned long long int start3, end3 ;
+ unsigned long long int start4, end4 ;
  int i ;
 
  init_flop () ;
@@ -75,9 +77,33 @@ int main (int argc, char **argv)
 
  end2 = _rdtsc () ;
 
+ start3 = _rdtsc () ;
+
+ for (i = 0; i < NB_FOIS; i++) {
+   c3 = add_complexe_float (c1, c2) ;
+ }
+
+ end3 = _rdtsc () ;
+
+ start4 = _rdtsc () ;
+
+ for (i = 0; i < NB_FOIS; i++) {
+   c4 = mult_complexe_float (c1, c2) ;
+ }
+
+ end4 = _rdtsc () ;
+
+  printf("--- Addition complexe simple : ---\n");
+  printf ("apres boucle c3.real %f c3.imaginary %f %lld cycles \n", c3.real, c3.imaginary, end3-start3) ;
+  calcul_flop ("calcul complexe ", NB_FOIS*4, end3-start3) ;
+  printf("--- Multiplication complexe simple : ---\n");
+  printf ("apres boucle c4.real %f c4.imaginary %f %lld cycles \n", c4.real, c4.imaginary, end4-start4) ;
+  calcul_flop ("calcul complexe ", NB_FOIS*4, end4-start4) ;
+  printf("--- Addition complexe double : ---\n");
   printf ("apres boucle cd3.real %f cd3.imaginary %f %lld cycles \n", cd3.real, cd3.imaginary, end-start) ;
-  printf ("apres boucle cd4.real %f cd4.imaginary %f %lld cycles \n", cd4.real, cd4.imaginary, end2-start2) ;
   calcul_flop ("calcul complexe ", NB_FOIS*4, end-start) ;
+  printf("--- Multiplication complexe double : ---\n");
+  printf ("apres boucle cd4.real %f cd4.imaginary %f %lld cycles \n", cd4.real, cd4.imaginary, end2-start2) ;
   calcul_flop ("calcul complexe ", NB_FOIS*4, end2-start2) ;
   exit (0) ;
 }
