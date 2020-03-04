@@ -29,29 +29,59 @@ inline complexe_double_t add_complexe_double (const complexe_double_t c1, const 
   return r ;
 }
 
-
-/*
 inline complexe_float_t mult_complexe_float (const complexe_float_t c1, const complexe_float_t c2)
 {
+	complexe_float_t r ;
 
+	r.real = c1.real * c2.real - c1.imaginary * c2.imaginary;
+	r.imaginary = c1.real * c2.imaginary - c1.imaginary * c2.real;
+  
+	return r ;
 }
 
 inline complexe_double_t mult_complexe_double (const complexe_double_t c1, const complexe_double_t c2)
 {
+	complexe_double_t r ;
 
+	r.real = c1.real * c2.real - c1.imaginary * c2.imaginary;
+	r.imaginary = c1.real * c2.imaginary - c1.imaginary * c2.real;
+  
+	return r ;
 }
 
 
 inline complexe_float_t div_complexe_float (const complexe_float_t c1, const complexe_float_t c2)
 {
+	complexe_float_t r ;
+	
+	complexe_float_t conjc2;
+	conjc2.real = c2.real;
+	conjc2.imaginary = -c2.imaginary;
+	
+	conjc2 = mult_complexe_float(c1, conjc2);
 
+	r.real = conjc2.real;
+	r.imaginary = conjc2.imaginary;
+  
+	return r ;
 }
 
 inline complexe_double_t div_complexe_double (const complexe_double_t c1, const complexe_double_t c2)
 {
+	complexe_double_t r ;
+	
+	complexe_double_t conjc2;
+	conjc2.real = c2.real;
+	conjc2.imaginary = -c2.imaginary;
+	
+	conjc2 = mult_complexe_double(c1, conjc2);
 
+	r.real = conjc2.real;
+	r.imaginary = conjc2.imaginary;
+  
+	return r ;
 }
-*/
+
 
 
 
