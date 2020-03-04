@@ -40,13 +40,16 @@ void mncblas_cswap(const int N, void *X, const int incX,
 
   register unsigned int i = 0 ;
   register unsigned int j = 0 ;
-  register void save ;
+  register void *save ;
+
+  void **x = (void **)x;
+  void **y = (void **)y;
   
   for (; ((i < N) && (j < N)) ; i += incX, j+=incY)
     {
-      save = Y [j] ;
-      Y [j] = X [i] ;
-      X [i] = save ;
+      save = y [j] ;
+      y [j] = x [i] ;
+      x [i] = save ;
     }
 
   return ;
@@ -57,13 +60,16 @@ void mncblas_zswap(const int N, void *X, const int incX,
 {
   register unsigned int i = 0 ;
   register unsigned int j = 0 ;
-  register void save ;
+  register void *save ;
+
+  void **x = (void **)x;
+  void **y = (void **)y;
   
   for (; ((i < N) && (j < N)) ; i += incX, j+=incY)
     {
-      save = Y [j] ;
-      Y [j] = X [i] ;
-      X [i] = save ;
+      save = y [j] ;
+      y [j] = x [i] ;
+      x [i] = save ;
     }
 
   return ;
