@@ -83,7 +83,3 @@ inline complexe_double_t div_complexe_double (const complexe_double_t c1, const 
 
   return res;
 }
-
-
-
-
