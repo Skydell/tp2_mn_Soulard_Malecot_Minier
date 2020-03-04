@@ -21,6 +21,7 @@ int main (int argc, char **argv)
  complexe_double_t cd4 ;
 
  unsigned long long int start, end ;
+ unsigned long long int start2, end2 ;
  int i ;
 
  init_flop () ;
