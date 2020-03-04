@@ -14,6 +14,7 @@ int main (int argc, char **argv)
  complexe_float_t c2= {3.0, 6.0} ;
  complexe_float_t c3 ;
  complexe_float_t c4;
+
  complexe_float_t somme_c1_c2= {4.0, 8.0};
  complexe_float_t mult_c1_c2= {-9.0, 12.0};
 
@@ -43,7 +44,7 @@ int main (int argc, char **argv)
  if (c3.real == somme_c1_c2.real && c3.imaginary == somme_c1_c2.imaginary){
    printf("\n--- Addition complexes simples : Test PASSED\n");
  } else {
-   printf("--- Addition complexes simples : Résultat faux\n");
+   printf("\n--- Addition complexes simples : Résultat faux\n");
  }
 
  c4 = mult_complexe_float(c1, c2) ;
@@ -55,13 +56,13 @@ int main (int argc, char **argv)
  if (c4.real == mult_c1_c2.real && c4.imaginary == mult_c1_c2.imaginary){
    printf("\n--- Addition complexes simples : Test PASSED\n");
  } else {
-   printf("--- Addition complexes simples : Résultat faux\n");
+   printf("\n--- Addition complexes simples : Résultat faux\n");
  }
 
  cd1 = (complexe_double_t) {10.0, 7.0} ;
  cd2 = (complexe_double_t) {25.0, 32.0} ;
  somme_cd1_cd2 = (complexe_double_t) {35.0, 39.0};
- mult_cd1_cd2 = (complexe_double_t) {26.0, 425.0};
+ mult_cd1_cd2 = (complexe_double_t) {26.0, 495.0};
 
  cd3 = add_complexe_double (cd1, cd2) ;
 
@@ -74,7 +75,7 @@ int main (int argc, char **argv)
  if (((complexe_double_t)cd3).real == somme_cd1_cd2.real && ((complexe_double_t)cd3).imaginary == somme_cd1_cd2.imaginary){
    printf("\n--- Addition complexes simples : Test PASSED\n");
  } else {
-   printf("--- Addition complexes simples : Résultat faux\n");
+   printf("\n--- Addition complexes simples : Résultat faux\n");
  }
 
  cd4 = mult_complexe_double (cd1, cd2) ;
@@ -86,7 +87,7 @@ int main (int argc, char **argv)
  if (((complexe_double_t)cd4).real == mult_cd1_cd2.real && ((complexe_double_t)cd4).imaginary == mult_cd1_cd2.imaginary){
    printf("\n--- Addition complexes simples : Test PASSED\n");
  } else {
-   printf("--- Addition complexes simples : Résultat faux\n");
+   printf("\n--- Addition complexes simples : Résultat faux\n");
  }
 
  start =_rdtsc () ;
