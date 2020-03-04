@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <x86intrin.h>
 
-// La frequence du processeur est de 2.5 GHZ
-static const float duree_cycle = (float) 1 / (float) 2.5 ;
+// La frequence du processeur est de 1.6 GHZ
+static const float duree_cycle = (float) 1 / (float) 1.6 ;
 // duree du cycle en nano seconde 10^-9
 
 static unsigned long long int residu ;
@@ -16,7 +16,7 @@ void init_flop ()
   end =_rdtsc () ;
 
   residu = end - start ;
-
+  
 }
 
 
