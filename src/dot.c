@@ -34,7 +34,7 @@ float mncblas_sdot(const int N, const float *X, const int incX,
 
   return dot ;
 }
-
+/*
 double mncblas_ddot(const int N, const double *X, const int incX, 
                  const double *Y, const int incY)
 {
@@ -67,7 +67,7 @@ void   mncblas_cdotu_sub(const int N, const void *X, const int incX,
     }
 
   return dot ;
-}
+}*/
 
 void   mncblas_cdotc_sub(const int N, const void *X, const int incX,
                        const void *Y, const int incY, void *dotc)
