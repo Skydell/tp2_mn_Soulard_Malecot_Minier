@@ -125,6 +125,9 @@ int main (int argc, char **argv)
     printf("\n--- Division complexes simples : Résultat faux\n");
   }
 
+  trompeur = 0;
+  trompeur2 = 0;
+
   start =_rdtsc () ;
 
   for (i = 0 ; i < NB_FOIS; i++)
@@ -136,6 +139,13 @@ int main (int argc, char **argv)
 
   end = _rdtsc () ;
 
+  printf("\n--- Addition complexe double : ---\n");
+  printf ("apres boucle cd3.real %f cd3.imaginary %f %lld cycles \n", cd3.real, cd3.imaginary, end-start) ;
+  calcul_flop ("calcul complexe ", NB_FOIS*4, end-start) ;
+
+  trompeur = 0;
+  trompeur2 = 0;
+
   start2 = _rdtsc () ;
 
   for (i = 0; i < NB_FOIS; i++) {
@@ -145,6 +155,13 @@ int main (int argc, char **argv)
   }
 
   end2 = _rdtsc () ;
+
+  printf("\n--- Multiplication complexe double : ---\n");
+  printf ("apres boucle cd4.real %f cd4.imaginary %f %lld cycles \n", cd4.real, cd4.imaginary, end2-start2) ;
+  calcul_flop ("calcul complexe ", NB_FOIS*8, end2-start2) ;
+
+  trompeur = 0;
+  trompeur2 = 0;
 
   start3 = _rdtsc () ;
 
@@ -156,6 +173,13 @@ int main (int argc, char **argv)
 
   end3 = _rdtsc () ;
 
+  printf("\n--- Addition complexe simple : ---\n");
+  printf ("apres boucle c3.real %f c3.imaginary %f %lld cycles \n", c3.real, c3.imaginary, end3-start3) ;
+  calcul_flop ("calcul complexe ", NB_FOIS*4, end3-start3) ;
+
+  trompeur = 0;
+  trompeur2 = 0;
+
   start4 = _rdtsc () ;
 
   for (i = 0; i < NB_FOIS; i++) {
@@ -166,6 +190,12 @@ int main (int argc, char **argv)
 
   end4 = _rdtsc () ;
 
+  printf("\n--- Multiplication complexe simple : ---\n");
+  printf ("apres boucle c4.real %f c4.imaginary %f %lld cycles \n", c4.real, c4.imaginary, end4-start4) ;
+  calcul_flop ("calcul complexe ", NB_FOIS*8, end4-start4) ;
+
+  trompeur = 0;
+  trompeur2 = 0;
 
   start5 =_rdtsc () ;
 
@@ -178,6 +208,12 @@ int main (int argc, char **argv)
 
   end5 = _rdtsc () ;
 
+  printf("\n--- Division complexe simple : ---\n");
+  printf ("apres boucle c5.real %f c5.imaginary %f %lld cycles \n", c5.real, c5.imaginary, end5-start5) ;
+  calcul_flop ("calcul complexe ", NB_FOIS*17, end5-start5) ;
+
+  trompeur = 0;
+  trompeur2 = 0;
 
   start6 =_rdtsc () ;
 
@@ -190,21 +226,6 @@ int main (int argc, char **argv)
 
   end6 = _rdtsc () ;
 
-   printf("\n--- Addition complexe simple : ---\n");
-   printf ("apres boucle c3.real %f c3.imaginary %f %lld cycles \n", c3.real, c3.imaginary, end3-start3) ;
-   calcul_flop ("calcul complexe ", NB_FOIS*4, end3-start3) ;
-   printf("\n--- Multiplication complexe simple : ---\n");
-   printf ("apres boucle c4.real %f c4.imaginary %f %lld cycles \n", c4.real, c4.imaginary, end4-start4) ;
-   calcul_flop ("calcul complexe ", NB_FOIS*8, end4-start4) ;
-   printf("\n--- Addition complexe double : ---\n");
-   printf ("apres boucle cd3.real %f cd3.imaginary %f %lld cycles \n", cd3.real, cd3.imaginary, end-start) ;
-   calcul_flop ("calcul complexe ", NB_FOIS*4, end-start) ;
-   printf("\n--- Multiplication complexe double : ---\n");
-   printf ("apres boucle cd4.real %f cd4.imaginary %f %lld cycles \n", cd4.real, cd4.imaginary, end2-start2) ;
-   calcul_flop ("calcul complexe ", NB_FOIS*8, end2-start2) ;
-   printf("\n--- Division complexe simple : ---\n");
-   printf ("apres boucle c5.real %f c5.imaginary %f %lld cycles \n", c5.real, c5.imaginary, end5-start5) ;
-   calcul_flop ("calcul complexe ", NB_FOIS*17, end5-start5) ;
    printf("\n--- Division complexe double : ---\n");
    printf ("apres boucle cd5.real %f cd5.imaginary %f %lld cycles \n", cd5.real, cd5.imaginary, end6-start6) ;
    calcul_flop ("calcul complexe ", NB_FOIS*17, end6-start6) ;

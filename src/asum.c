@@ -19,7 +19,7 @@ double cblas_dasum (const int n, const double *x, const int incx) {
 	return res;
 }
 
-void cblas_casum (const int n, const void *x, const int incx) {
+double cblas_casum (const int n, const void *x, const int incx) {
 	if (n <= 0 || incx <= 0) return 0;
 	float res = 0;
 	for (int i = 0; i < n; i+=incx) {
@@ -29,7 +29,7 @@ void cblas_casum (const int n, const void *x, const int incx) {
 	return res;
 }
 
-void cblas_zasum (const int n, const void *x, const int incx) {
+double cblas_zasum (const int n, const void *x, const int incx) {
 	if (n <= 0 || incx <= 0) return 0;
 	double res = 0;
 	for (int i = 0; i < n; i+=incx) {
@@ -38,4 +38,3 @@ void cblas_zasum (const int n, const void *x, const int incx) {
 	}
 	return res;
 }
-
