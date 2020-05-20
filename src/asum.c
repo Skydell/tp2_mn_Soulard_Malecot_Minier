@@ -38,4 +38,3 @@ double cblas_zasum (const int n, const complexe_double_t *x, const int incx) {
 	}
 	return res;
 }
-
