@@ -39,9 +39,8 @@ test_complexe2: test_complexe2.o flop.o
 test_asum.o: test_asum.c  $(INC_DIR)/complexe.h
 	gcc $(OPTIONS_COMPIL) -c test_asum.c
 
-test_asum: test_asum.o flop.o/libmnblas.a
+test_asum: test_asum.o flop.o  $(LIB_DIR)/libmnblas.a
 	gcc -o test_asum test_asum.o flop.o $(OPTIONS_LINK_STATIC)
-
 
 clean:
 	rm -f *.o test_dot test_dot_dyn test_complexe test_complexe2 *~

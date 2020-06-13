@@ -9,28 +9,26 @@
 
 int main (int argc, char **argv)
 {
-  printf("\n--- Test asum float : ---\n");
+  printf("\n--- Test swap float : ---\n");
 
-  float cor_res1_float = 0;
-  float cor_res2_float = 0;
-  float f[4] = {1.2, 2.33, -3.44, 39.21};
+  float cor_f_float[4];
+  float cor_res2_float[4];
+  float f[4] = {3.7, 8.2, -2.98, 9.23};
+  float g[4] = {9, 1.22, 9.33, 1.2};
 
   for (int i = 0; i < 4; i++) {
-    if (f[i]>=0) {
-      if (i%2 == 0){
-        cor_res2_float += f[i];
-      }
-      cor_res1_float += f[i];
-    } else {
-      if (i%2 == 0) {
-        cor_res2_float += -f[i];
-      }
-      cor_res1_float += -f[i];
-    }
+    cor_f_float[i] = f[i];
+    cor_g_float[i] = g[i];
   }
 
-  float res1_float= cblas_sasum(4, f, 1);
-  float res2_float= cblas_sasum(4, f, 2);
+  mncblas_sswap(4, f, 1, g ,1);
+  mncblas_sswap(4, f, 2, g, 2);
+
+  for (size_t i = 0; i < 4; i++) {
+    if (g[i] != cor_f_float[i] || f[i] != cor_g_float[i]){
+      printf("Error index : %i\n", i);
+    }
+  }
 
   printf("Test vecteur {1.2, -2.33, -3.44, 39.21} :\n");
   if (res1_float< cor_res1_float-0.01 || res1_float> cor_res1_float+0.01){
