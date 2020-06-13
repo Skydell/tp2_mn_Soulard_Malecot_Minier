@@ -32,7 +32,7 @@ int main (int argc, char **argv)
   float res1_float= cblas_sasum(4, f, 1);
   float res2_float= cblas_sasum(4, f, 2);
 
-  printf("Test vecteur {1.2, -2.33, -3.44, 39.21} :\n");
+  printf("Test vecteur {1.2, 2.33, -3.44, 39.21} :\n");
   if (res1_float< cor_res1_float-0.01 || res1_float> cor_res1_float+0.01){
     printf("Test failed for index 1\n");
   } else {
