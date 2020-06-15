@@ -35,11 +35,13 @@ int main (int argc, char **argv)
   printf("Test vecteur {1.2, -2.33, -3.44, 39.21} :\n");
   if (res1_float< cor_res1_float-0.01 || res1_float> cor_res1_float+0.01){
     printf("Test failed for index 1\n");
+    printf("%f != %f\n",res1_float, cor_res1_float);
   } else {
     printf("Test index 1 Success\n");
   }
   if (res2_float< cor_res2_float-0.01 || res2_float> cor_res2_float + 0.01){
     printf("Test failed for index 2\n\n");
+    printf("%f != %f\n", res2_float, cor_res2_float);
   } else {
     printf("Test index 2 Success\n\n");
   }
@@ -76,16 +78,19 @@ int main (int argc, char **argv)
   printf("Test vecteur {3.43, 30.42, 2, 5.1, 4.4, 7.2} :\n");
   if (res3_float< cor_res3_float-0.01 || res3_float> cor_res3_float+0.01){
     printf("Test failes for index 1\n");
+    printf("%f != %f\n",res3_float, cor_res3_float);
   } else {
     printf("Test index 1 Success\n");
   }
   if (res4_float< cor_res4_float-0.01 || res4_float> cor_res4_float+0.01){
     printf("Test failed for index 2\n");
+    printf("%f != %f\n",res4_float, cor_res4_float);
   } else {
     printf("Test index 2 Success\n");
   }
   if (res5_float< cor_res5_float-0.01 || res5_float> cor_res5_float+0.01){
     printf("Test failed for index 3\n\n");
+    printf("%f != %f\n",res4_float, cor_res4_float);
   } else {
     printf("Test index 3 Success\n\n");
   }

@@ -9,10 +9,10 @@
 
 int main (int argc, char **argv)
 {
-  printf("\n--- Test swap float : ---\n");
+  printf("\n--- Test swap float : ---\n\n");
 
   float cor_f_float[4];
-  float cor_res2_float[4];
+  float cor_g_float[4];
   float f[4] = {3.7, 8.2, -2.98, 9.23};
   float g[4] = {9, 1.22, 9.33, 1.2};
 
@@ -22,393 +22,92 @@ int main (int argc, char **argv)
   }
 
   mncblas_sswap(4, f, 1, g ,1);
+
+  printf("Vecteurs :\n f = {3.7, 8.2, -2.98, 9.23}\n g = {9, 1.22, 9.33, 1.2}\n");
+  printf("Index 1 :\n");
+  for (int i = 0; i < 4; i++) {
+    if (g[i] != cor_f_float[i] || f[i] != cor_g_float[i]){
+      printf("Error index : %i\n", i);
+      printf("%f != %f || %f != %f\n",g[i], cor_f_float[i], f[i], cor_g_float[i]);
+    }
+  }
+  printf("->Fin index 1\n");
+
   mncblas_sswap(4, f, 2, g, 2);
 
-  for (size_t i = 0; i < 4; i++) {
+  printf("Index 2 :\n");
+  for (int i = 0; i < 4; i+=2) {
     if (g[i] != cor_f_float[i] || f[i] != cor_g_float[i]){
+      printf("Error index : %i\n", i);
+      printf("%f != %f || %f != %f\n",g[i], cor_f_float[i], f[i], cor_g_float[i]);
+    }
+  }
+  printf("->Fin index 2\n");
+
+
+/*
+  float cor_k_float[8];
+  float cor_j_float[8];
+  float k[8] = {-98, 8.21, -87.23, -5.38, 43.1, -89.1, 2.35, 6.71};
+  float j[8] = {-2.2, 87.23, -22.5, 90, 55, 34.22, -35.1, -97.3};
+
+  for (int i = 0; i < 8; i++) {
+    cor_k_float[i] = k[i];
+    cor_j_float[i] = j[i];
+  }
+
+  mncblas_sswap(8, k, 1, j ,1);
+
+  printf("Vecteurs :\n i = {-98, 8.21, -87.23, -5.38, 43.1, -89.1, 2.35, 6.71}\n j = {-2.2, 87.23, -22.5, 90, 55, 34.22, -35.1, -97.3}\n");
+  printf("Index 1 :\n");
+  for (int i = 0; i < 8; i++) {
+    if (j[i] != cor_k_float[i] || k[i] != cor_j_float[i]){
       printf("Error index : %i\n", i);
     }
   }
+  printf("->Fin index 1\n");
 
-  printf("Test vecteur {1.2, -2.33, -3.44, 39.21} :\n");
-  if (res1_float< cor_res1_float-0.01 || res1_float> cor_res1_float+0.01){
-    printf("Test failed for index 1\n");
-  } else {
-    printf("Test index 1 Success\n");
-  }
-  if (res2_float< cor_res2_float-0.01 || res2_float> cor_res2_float + 0.01){
-    printf("Test failed for index 2\n\n");
-  } else {
-    printf("Test index 2 Success\n\n");
-  }
+  mncblas_sswap(8, k, 2, j, 2);
 
-
-  float cor_res3_float = 0;
-  float cor_res4_float = 0;
-  float cor_res5_float = 0;
-  float f2[6] = {3.43, 30.42, 2, 5.1, 4.4, 7.2};
-  for (int j = 0; j < 6; j++) {
-    if (f2[j]>=0) {
-      if (j%2 == 0){
-        cor_res4_float += f2[j];
-      }
-      if (j%3 == 0){
-        cor_res5_float += f2[j];
-      }
-      cor_res3_float += f2[j];
-    } else {
-      if (j%2 == 0) {
-        cor_res4_float += -f2[j];
-      }
-      if (j%3 == 0) {
-        cor_res5_float += -f2[j];
-      }
-      cor_res3_float += -f2[j];
+  printf("Index 2 :\n");
+    if (j[i] != cor_k_float[i] || k[i] != cor_j_float[i]){
+      printf("Error index : %i\n", i);
     }
   }
+  printf("->Fin index 2\n");
 
-  float res3_float= cblas_sasum(6, f2, 1);
-  float res4_float= cblas_sasum(6, f2, 2);
-  float res5_float= cblas_sasum(6, f2, 3);
+  mncblas_sswap(8, k, 3, j, 3);
 
-  printf("Test vecteur {3.43, 30.42, 2, 5.1, 4.4, 7.2} :\n");
-  if (res3_float< cor_res3_float-0.01 || res3_float> cor_res3_float+0.01){
-    printf("Test failes for index 1\n");
-  } else {
-    printf("Test index 1 Success\n");
-  }
-  if (res4_float< cor_res4_float-0.01 || res4_float> cor_res4_float+0.01){
-    printf("Test failed for index 2\n");
-  } else {
-    printf("Test index 2 Success\n");
-  }
-  if (res5_float< cor_res5_float-0.01 || res5_float> cor_res5_float+0.01){
-    printf("Test failed for index 3\n\n");
-  } else {
-    printf("Test index 3 Success\n\n");
-  }
-
-  printf("\n--- Test asum double : ---\n");
-
-  double cor_res1_double = 0;
-  double cor_res2_double = 0;
-  double d[3] = {3.34005, 2.01005, -4.302900};
-
-  for (int i = 0; i < 3; i++) {
-    if (d[i]>= 0){
-      if (i%2 == 0){
-        cor_res2_double += d[i];
-      }
-      cor_res1_double += d[i];
-    } else {
-      if (i%2 == 0){
-        cor_res2_double += -d[i];
-      }
-      cor_res1_double += -d[i];
+  printf("Index 3 :\n");
+  for (int i = 0; i < 8; i+=3) {
+    if (j[i] != cor_k_float[i] || k[i] != cor_j_float[i]){
+      printf("Error index : %i\n", i);
     }
   }
+  printf("->Fin index 3\n");
 
-  double res1_double= cblas_dasum(3, d, 1);
-  double res2_double= cblas_dasum(3, d, 2);
+  mncblas_sswap(8, k, 3, j, 3);
 
-  printf("Test vecteur {3.34005, 2.01005, -4.302900} :\n");
-  if (res1_double< cor_res1_double-0.01 || res1_double> cor_res1_double+0.01){
-    printf("Test failed for index 1\n");
-  } else {
-    printf("Test index 1 Success\n");
-  }
-  if (res2_double< cor_res2_double-0.01 || res2_double> cor_res2_double + 0.01){
-    printf("Test failed for index 2\n\n");
-  } else {
-    printf("Test index 2 Success\n\n");
-  }
-
-  double cor_res3_double = 0;
-  double cor_res4_double = 0;
-  double cor_res5_double = 0;
-  double d2[7] = {3.67845, 8.31205, 4.112900, 6.2930, 7.999, 8.293, 7.0908};
-
-  for (int i = 0; i < 7; i++) {
-    if (d2[i]>= 0){
-      if (i%2 == 0){
-        cor_res4_double += d2[i];
-      }
-      if (i%3 == 0){
-        cor_res5_double += d2[i];
-      }
-      cor_res3_double += d2[i];
-    } else {
-      if (i%2 == 0){
-        cor_res4_double += -d2[i];
-      }
-      if (i%3 == 0){
-        cor_res5_double += -d2[i];
-      }
-      cor_res3_double += -d2[i];
+  printf("Index 3 :\n");
+  for (int i = 0; i < 8; i+=3) {
+    if (j[i] != cor_k_float[i] || k[i] != cor_j_float[i]){
+      printf("Error index : %i\n", i);
     }
   }
+  printf("->Fin index 3\n");
 
-  double res3_double= cblas_dasum(7, d2, 1);
-  double res4_double= cblas_dasum(7, d2, 2);
-  double res5_double= cblas_dasum(7, d2, 3);
+  mncblas_sswap(8, k, 4, j, 5);
 
-  printf("Test vecteur {3.67845, 8.31205, 4.112900, 6.2930, 7.999, 8.293, 7.0908} :\n");
-  if (res3_double< cor_res3_double-0.01 || res1_double> cor_res3_double+0.01){
-    printf("Test failed for index 1\n");
-  } else {
-    printf("Test index 1 Success\n");
-  }
-  if (res4_double< cor_res4_double-0.01 || res4_double> cor_res4_double + 0.01){
-    printf("Test failed for index 2\n");
-  } else {
-    printf("Test index 2 Success\n");
-  }
-  if (res5_double< cor_res5_double-0.01 || res5_double> cor_res5_double+0.01){
-    printf("Test failed for index 3\n\n");
-  } else {
-    printf("Test index 3 Success\n\n");
-  }
-
-
-
-  printf("\n--- Test asum Complexe float: ---\n");
-
-  double cor_res1_Cfloat = 0;
-  double cor_res2_Cfloat = 0;
-  double cor_res3_Cfloat = 0;
-  double cor_res4_Cfloat = 0;
-  double cor_res5_Cfloat = 0;
-  complexe_float_t cf[10];
-  for (int i = 0; i < 10; i++) {
-    if (i == 5){
-      cf[i].real = -(i+4 + ((float)i/10));
-      cf[i].imaginary = -(i+2 + ((float)i/1000));
-    } else {
-      cf[i].real = i+4 + ((float)i/10);
-      cf[i].imaginary = i+2 + ((float)i/1000);
+  printf("Index i = 4, j = 5 :\n");
+  for (int i = 0, j = 0; i < 8 && j < 8; i+=4, j+=5) {
+    if (j[i] != cor_k_float[i] || k[i] != cor_j_float[i]){
+      printf("Error index : %i\n", i);
     }
   }
+  printf("->Fin index i = 4, j = 5\n");
 
-  for (int i = 0; i < 10; i++) {
-    if (cf[i].real >= 0 && cf[i].imaginary >= 0){
-      if (i%2 == 0){
-        cor_res2_Cfloat += cf[i].real + cf[i].imaginary;
-      }
-      if (i%3 == 0){
-        cor_res3_Cfloat += cf[i].real + cf[i].imaginary;
-      }
-      if (i%4 == 0){
-        cor_res4_Cfloat += cf[i].real + cf[i].imaginary;
-      }
-      if (i%5 == 0){
-        cor_res5_Cfloat += cf[i].real + cf[i].imaginary;
-      }
-      cor_res1_Cfloat += cf[i].real + cf[i].imaginary;
-    } else if (cf[i].real < 0 && cf[i].imaginary < 0) {
-      if (i%2 == 0){
-        cor_res2_Cfloat += -cf[i].real - cf[i].imaginary;
-      }
-      if (i%3 == 0){
-        cor_res3_Cfloat += -cf[i].real - cf[i].imaginary;
-      }
-      if (i%4 == 0){
-        cor_res4_Cfloat += -cf[i].real - cf[i].imaginary;
-      }
-      if (i%5 == 0){
-        cor_res5_Cfloat += -cf[i].real - cf[i].imaginary;
-      }
-      cor_res1_Cfloat += -cf[i].real - cf[i].imaginary;
-    } else if (cf[i].real >=0 && cf[i].imaginary < 0){
-      if (i%2 == 0){
-        cor_res2_Cfloat += cf[i].real - cf[i].imaginary;
-      }
-      if (i%3 == 0){
-        cor_res3_Cfloat += cf[i].real - cf[i].imaginary;
-      }
-      if (i%4 == 0){
-        cor_res4_Cfloat += cf[i].real - cf[i].imaginary;
-      }
-      if (i%5 == 0){
-        cor_res5_Cfloat += cf[i].real - cf[i].imaginary;
-      }
-      cor_res1_Cfloat += cf[i].real - cf[i].imaginary;
-    } else {
-      if (i%2 == 0){
-        cor_res2_Cfloat += -cf[i].real + cf[i].imaginary;
-      }
-      if (i%3 == 0){
-        cor_res3_Cfloat += -cf[i].real + cf[i].imaginary;
-      }
-      if (i%4 == 0){
-        cor_res4_Cfloat += -cf[i].real + cf[i].imaginary;
-      }
-      if (i%5 == 0){
-        cor_res5_Cfloat += -cf[i].real + cf[i].imaginary;
-      }
-      cor_res1_Cfloat += -cf[i].real + cf[i].imaginary;
-    }
-  }
-
-  float res1_Cfloat = cblas_casum(10, cf, 1);
-  float res2_Cfloat = cblas_casum(10, cf, 2);
-  float res3_Cfloat = cblas_casum(10, cf, 3);
-  float res4_Cfloat = cblas_casum(10, cf, 4);
-  float res5_Cfloat = cblas_casum(10, cf, 5);
-
-  printf("Test vecteur {");
-  for (int i = 0; i < 10; i++) {
-    if (i == 9){
-        printf(" %f + %f i",cf[i].real, cf[i].imaginary );
-    } else {
-        printf(" %f + %f i,",cf[i].real, cf[i].imaginary );
-    }
-  }
-  printf(" } :\n");
-  if (res1_Cfloat< cor_res1_Cfloat-0.01 || res1_Cfloat> cor_res1_Cfloat+0.01){
-    printf("Test failed for index 1\n");
-  } else {
-    printf("Test index 1 Success\n");
-  }
-  if (res2_Cfloat< cor_res2_Cfloat-0.01 || res2_Cfloat> cor_res2_Cfloat + 0.01){
-    printf("Test failed for index 2\n");
-  } else {
-    printf("Test index 2 Success\n");
-  }
-  if (res3_Cfloat< cor_res3_Cfloat-0.01 || res3_Cfloat > cor_res3_Cfloat+0.01){
-    printf("Test failed for index 3\n");
-  } else {
-    printf("Test index 3 Success\n");
-  }
-  if (res4_Cfloat< cor_res4_Cfloat-0.01 || res4_Cfloat > cor_res4_Cfloat+0.01){
-    printf("Test failed for index 4\n");
-  } else {
-    printf("Test index 4 Success\n");
-  }
-  if (res5_Cfloat< cor_res5_Cfloat-0.01 || res5_Cfloat > cor_res5_Cfloat+0.01){
-    printf("Test failed for index 5\n");
-  } else {
-    printf("Test index 5 Success\n");
-  }
-
-  printf("\n--- Test asum Complexe double: ---\n");
-
-  double cor_res1_Cdouble = 0;
-  double cor_res2_Cdouble = 0;
-  double cor_res3_Cdouble = 0;
-  double cor_res4_Cdouble = 0;
-  double cor_res5_Cdouble = 0;
-  complexe_double_t cd[10];
-  for (int i = 0; i < 10; i++) {
-    if (i == 2){
-      cd[i].real = -(i+3.8 + ((double)i/1000));
-      cd[i].imaginary = -(i+9.2 + ((double)i/1000000));
-    } else {
-      cd[i].real = i+4.6532 + ((float)i/1000);
-      cd[i].imaginary = i+2.984678 + ((float)i/1000000);
-    }
-  }
-
-  for (int i = 0; i < 10; i++) {
-    if (cd[i].real >= 0 && cd[i].imaginary >= 0){
-      if (i%2 == 0){
-        cor_res2_Cdouble += cd[i].real + cd[i].imaginary;
-      }
-      if (i%3 == 0){
-        cor_res3_Cdouble += cd[i].real + cd[i].imaginary;
-      }
-      if (i%4 == 0){
-        cor_res4_Cdouble += cd[i].real + cd[i].imaginary;
-      }
-      if (i%5 == 0){
-        cor_res5_Cdouble += cd[i].real + cd[i].imaginary;
-      }
-      cor_res1_Cdouble += cd[i].real + cd[i].imaginary;
-    } else if (cd[i].real < 0 && cd[i].imaginary < 0) {
-      if (i%2 == 0){
-        cor_res2_Cdouble += -cd[i].real - cd[i].imaginary;
-      }
-      if (i%3 == 0){
-        cor_res3_Cdouble += -cd[i].real - cd[i].imaginary;
-      }
-      if (i%4 == 0){
-        cor_res4_Cdouble += -cd[i].real - cd[i].imaginary;
-      }
-      if (i%5 == 0){
-        cor_res5_Cdouble += -cd[i].real - cd[i].imaginary;
-      }
-      cor_res1_Cdouble += -cd[i].real - cd[i].imaginary;
-    } else if (cd[i].real >=0 && cd[i].imaginary < 0){
-      if (i%2 == 0){
-        cor_res2_Cdouble += cd[i].real - cd[i].imaginary;
-      }
-      if (i%3 == 0){
-        cor_res3_Cdouble += cd[i].real - cd[i].imaginary;
-      }
-      if (i%4 == 0){
-        cor_res4_Cdouble += cd[i].real - cd[i].imaginary;
-      }
-      if (i%5 == 0){
-        cor_res5_Cdouble += cd[i].real - cd[i].imaginary;
-      }
-      cor_res1_Cdouble += cd[i].real - cd[i].imaginary;
-    } else {
-      if (i%2 == 0){
-        cor_res2_Cdouble += -cd[i].real + cd[i].imaginary;
-      }
-      if (i%3 == 0){
-        cor_res3_Cdouble += -cd[i].real + cd[i].imaginary;
-      }
-      if (i%4 == 0){
-        cor_res4_Cdouble += -cd[i].real + cd[i].imaginary;
-      }
-      if (i%5 == 0){
-        cor_res5_Cdouble += -cd[i].real + cd[i].imaginary;
-      }
-      cor_res1_Cdouble += -cd[i].real + cd[i].imaginary;
-    }
-  }
-
-  double res1_Cdouble = cblas_zasum(10, cd, 1);
-  double res2_Cdouble = cblas_zasum(10, cd, 2);
-  double res3_Cdouble = cblas_zasum(10, cd, 3);
-  double res4_Cdouble = cblas_zasum(10, cd, 4);
-  double res5_Cdouble = cblas_zasum(10, cd, 5);
-
-  printf("Test vecteur {");
-  for (int i = 0; i < 10; i++) {
-    if (i == 9){
-        printf(" %f + %f i",cd[i].real, cd[i].imaginary );
-    } else {
-        printf(" %f + %f i,",cd[i].real, cd[i].imaginary );
-    }
-  }
-  printf(" } :\n");
-  if (res1_Cdouble< cor_res1_Cdouble-0.01 || res1_Cdouble> cor_res1_Cdouble+0.01){
-    printf("Test failed for index 1\n");
-  } else {
-    printf("Test index 1 Success\n");
-  }
-  if (res2_Cdouble< cor_res2_Cdouble-0.01 || res2_Cdouble> cor_res2_Cdouble + 0.01){
-    printf("Test failed for index 2\n");
-  } else {
-    printf("Test index 2 Success\n");
-  }
-  if (res3_Cdouble< cor_res3_Cdouble-0.01 || res3_Cdouble > cor_res3_Cdouble+0.01){
-    printf("Test failed for index 3\n");
-  } else {
-    printf("Test index 3 Success\n");
-  }
-  if (res4_Cdouble< cor_res4_Cdouble-0.01 || res4_Cdouble > cor_res4_Cdouble+0.01){
-    printf("Test failed for index 4\n");
-  } else {
-    printf("Test index 4 Success\n");
-  }
-  if (res5_Cdouble< cor_res5_Cdouble-0.01 || res5_Cdouble > cor_res5_Cdouble+0.01){
-    printf("Test failed for index 5\n");
-  } else {
-    printf("Test index 5 Success\n");
-  }
+  printf("End of test float\n");
 
   exit (0) ;
-
+*/
 }
