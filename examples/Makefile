@@ -1,4 +1,4 @@
-all: test_complexe2 test_complexe perf_dot perf_dot_dyn perf_copy perf_axpy perf_asum test_asum test_swap test_copy test_axpy test_nrm2
+all: test_complexe2 test_complexe perf_dot perf_dot_dyn perf_copy perf_axpy perf_asum test_asum test_swap test_copy test_axpy test_nrm2 test_gemm test_gemv
 
 INC_DIR=../include
 
@@ -75,7 +75,7 @@ test_copy: test_copy.o flop.o  $(LIB_DIR)/libmnblas.a
 test_nrm2.o: test_nrm2.c  $(INC_DIR)/complexe.h
 	gcc $(OPTIONS_COMPIL) -c test_nrm2.c -lm
 
-test_nrm2: test_nrm2.o flop.o
+test_nrm2: test_nrm2.o flop.o $(LIB_DIR)/libmnblas.a
 	gcc -o test_nrm2 test_nrm2.o flop.o $(OPTIONS_LINK_STATIC) -lm
 
 test_axpy.o: test_axpy.c  $(INC_DIR)/complexe.h

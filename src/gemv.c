@@ -1,6 +1,7 @@
 #include <stdlib.h>
 
-#include "complexe.c"
+#include "../include/mnblas.h"
+#include "../include/complexe2.h"
 
 void cblas_sgemv(const int m, const int n, const float alpha, const float *a, const int lda, const float *x, const int incx, const float beta, float *y, const int incy){
 	float* inter = malloc(m*n);

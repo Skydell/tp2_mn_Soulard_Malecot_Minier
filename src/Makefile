@@ -12,14 +12,14 @@ OPTIONS=-O2 -Wall -fPIC $(OPTIM) -I$(INC_DIR)
 
 libmnblas.a: copy.o swap.o axpy.o dot.o complexe.o nrm2.o gemv.o gemm.o
 	rm -f libmnblas.a $(LIB_DIR)/libmnblas.a
-	ar -r libmnblas.a copy.o swap.o axpy.o dot.o complexe.o nrm2.o
+	ar -r libmnblas.a copy.o swap.o axpy.o dot.o complexe.o nrm2.o gemv.o gemm.o
 	cp libmnblas.a $(LIB_DIR)
 
 # Bibliothèque dynamique
 
 libmnblasdyn.so:copy.o swap.o axpy.o dot.o complexe.o nrm2.o gemv.o gemm.o
 	rm -f libmnblasdyn.so $(LIB_DIR)/libmnblasdyn.so
-	gcc -shared -o libmnblasdyn.so copy.o swap.o axpy.o dot.o complexe.o nrm2.o
+	gcc -shared -o libmnblasdyn.so copy.o swap.o axpy.o dot.o complexe.o nrm2.o gemv.o gemm.o
 	cp libmnblasdyn.so $(LIB_DIR)
 
 complexe.o: $(INC_DIR)/complexe.h complexe.c
@@ -48,6 +48,9 @@ gemv.o : gemv.c $(INC_DIR)/mnblas.h
 	gcc $(OPTIONS) -c gemv.c
 
 # BLAS 3
+
+gemm.o : gemv.c $(INC_DIR)/mnblas.h
+	gcc $(OPTIONS) -c gemm.c
 
 clean:
 	rm -f *.o *.a *.so *~  $(INC_DIR)/*~ $(LIB_DIR)/libmnblasdyn.so  $(LIB_DIR)/libmnblas.a 
