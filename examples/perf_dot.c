@@ -92,12 +92,14 @@ int main (int argc, char **argv)
 		 res = 0.0 ;
 		 
 		 start = _rdtsc () ;
-			res = mncblas_sdot (VECSIZE, vec1, 1, vec2, 1) ;
+		 res = mncblas_sdot (VECSIZE, vec1, 1, vec2, 1) ;
 		 end = _rdtsc () ;
 		 
 		 printf ("mncblas_sdot %d : res = %3.2f nombre de cycles: %Ld \n", i, res, end-start) ;
 		 calcul_flop ("sdot ", 2 * VECSIZE, end-start) ; 
 	   }
+	  
+	  printf("----------------------------------------\n");
 	  
 	 for (i = 0 ; i < NB_FOIS; i++)
 	   {
@@ -110,8 +112,10 @@ int main (int argc, char **argv)
 		 end = _rdtsc () ;
 		 
 		 printf ("mncblas_ddot %d : res = %3.2f nombre de cycles: %Ld \n", i, res, end-start) ;
-		 calcul_flop ("sdot ", 2 * VECSIZE, end-start) ; 
+		 calcul_flop ("ddot ", 2 * VECSIZE, end-start) ; 
 	   }
+	   
+	   printf("----------------------------------------\n");
 	   
 	for (i = 0 ; i < NB_FOIS; i++)
 	{
@@ -124,8 +128,10 @@ int main (int argc, char **argv)
 		end = _rdtsc () ;
 
 		printf ("mncblas_cdotu_sub %d : nombre de cycles: %Ld \n", i, end-start) ;
-		calcul_flop ("sdot ", 2 * VECSIZE, end-start) ; 
+		calcul_flop ("cdotu ", 2 * VECSIZE, end-start) ; 
 	}
+	  
+	  printf("----------------------------------------\n");
 	   
 	for (i = 0 ; i < NB_FOIS; i++)
 	{
@@ -138,8 +144,10 @@ int main (int argc, char **argv)
 		end = _rdtsc () ;
 
 		printf ("mncblas_zdotu_sub %d : nombre de cycles: %Ld \n", i, end-start) ;
-		calcul_flop ("sdot ", 2 * VECSIZE, end-start) ; 
+		calcul_flop ("zdotu ", 2 * VECSIZE, end-start) ; 
 	}
+	
+	printf("----------------------------------------\n");
 	
 	for (i = 0 ; i < NB_FOIS; i++)
 	{
@@ -152,8 +160,10 @@ int main (int argc, char **argv)
 		end = _rdtsc () ;
 
 		printf ("mncblas_cdotc_sub %d : nombre de cycles: %Ld \n", i, end-start) ;
-		calcul_flop ("sdot ", 2 * VECSIZE, end-start) ; 
+		calcul_flop ("cdotc ", 2 * VECSIZE, end-start) ; 
 	}
+	
+	printf("----------------------------------------\n");
 	   
 	for (i = 0 ; i < NB_FOIS; i++)
 	{
@@ -166,6 +176,6 @@ int main (int argc, char **argv)
 		end = _rdtsc () ;
 
 		printf ("mncblas_zdotc_sub %d : nombre de cycles: %Ld \n", i, end-start) ;
-		calcul_flop ("sdot ", 2 * VECSIZE, end-start) ; 
+		calcul_flop ("zdotc ", 2 * VECSIZE, end-start) ; 
 	}
 }

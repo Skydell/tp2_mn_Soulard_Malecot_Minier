@@ -92,29 +92,29 @@ void   mncblas_zdotc_sub(const int N, const void *X, const int incX,
 
 
 
-void mnblas_saxpy(const int N, const float alpha, const float *X,
+void cblas_saxpy(const int N, const float alpha, const float *X,
                  const int incX, float *Y, const int incY);
 
-void mnblas_daxpy(const int N, const double alpha, const double *X,
+void cblas_daxpy(const int N, const double alpha, const double *X,
                  const int incX, double *Y, const int incY);
 
-void mnblas_caxpy(const int N, const void *alpha, const void *X,
+void cblas_caxpy(const int N, const void *alpha, const void *X,
                  const int incX, void *Y, const int incY);
 
-void mnblas_zaxpy(const int N, const void *alpha, const void *X,
+void cblas_zaxpy(const int N, const void *alpha, const void *X,
                  const int incX, void *Y, const int incY);
 
 
 
 
 
-float  mnblas_sasum(const int N, const float *X, const int incX);
+float  cblas_sasum(const int N, const float *X, const int incX);
 
-double mnblas_dasum(const int N, const double *X, const int incX);
+double cblas_dasum(const int N, const double *X, const int incX);
 
-float  mnblas_scasum(const int N, const void *X, const int incX);
+float  cblas_casum(const int N, const void *X, const int incX);
 
-double mnblas_dzasum(const int N, const void *X, const int incX);
+double cblas_zasum(const int N, const void *X, const int incX);
 
 
 
