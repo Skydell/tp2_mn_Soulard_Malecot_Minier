@@ -192,7 +192,7 @@ int main (int argc, char **argv)
 
   complexe_float_t a4[1];
   a4[0].real = 1;
-  a4[0].imaginary = 2;
+  a4[0].imaginary = 2.7;
 
   for (size_t i = 0; i < 3; i++) {
     f4[i].real = i+4.89328 + i/10000;
@@ -202,9 +202,10 @@ int main (int argc, char **argv)
   }
 
   for (size_t i = 0; i < 3; i++) {
-    prod_4f1[i].real = f4[i].real - 2*f4[i].imaginary + g4[i].real;
-    prod_4f1[i].imaginary = f4[i].imaginary - 2*f4[i].real + g4[i].imaginary;
+    prod_4f1[i].real = f4[i].real - 2.7*f4[i].imaginary + g4[i].real;
+    prod_4f1[i].imaginary = f4[i].imaginary - 2.7*f4[i].real + g4[i].imaginary;
   }
+
 
   printf("Vecteurs :\n");
   printf(" f = { ");
@@ -217,7 +218,7 @@ int main (int argc, char **argv)
   }
   printf("%f + i * %f }\n\n", g4[2].real, g4[2].imaginary);
 
-  cblas_caxpy(3, a4, f4, 1, g4, 1);
+  cblas_zaxpy(3, a4, f4, 1, g4, 1);
 
   printf("Increment 1 et A = 1 + 2*i :\n");
   for (int i = 0; i < 3; i++) {
@@ -235,8 +236,8 @@ int main (int argc, char **argv)
 
 
   for (size_t i = 0; i < 3; i++) {
-    g4[i].real = i+32.43 + i/100;
-    g4[i].imaginary = i-22 + i/100;
+    g4[i].real = i+32.43222 + i/10000;
+    g4[i].imaginary = i+22.2 + i/10000;
   }
 
   for (size_t i = 0; i < 3; i+=2) {
@@ -244,7 +245,7 @@ int main (int argc, char **argv)
     prod_4f2[i].imaginary = -1*f4[i].imaginary + g3[i].imaginary;
   }
 
-  cblas_caxpy(3, a5, f4, 2, g4, 2);
+  cblas_zaxpy(3, a5, f4, 2, g4, 2);
 
   printf("Increment 2 et A = -1:\n");
   for (int i = 0; i < 3; i+=2) {
@@ -253,7 +254,7 @@ int main (int argc, char **argv)
       printf("%f + i* %f != %f + i* %f\n",g4[i].real, g4[i].imaginary, prod_4f2[i].real, prod_4f2[i].imaginary);
     }
   }
-  printf("Fin increment 2 et 1 = -1\n");
+  printf("Fin increment 2 et A = -1\n");
 
   exit (0) ;
 }
