@@ -56,6 +56,7 @@ void mncblas_zcopy(const int N, const void *X, const int incX,
 
   for (; ((i < N) && (j < N)) ; i += incX, j += incY)
     {
+      printf("affectation de x[%i] à y[%i]\n", i, j);
       y [j] = x [i] ;
     }
 

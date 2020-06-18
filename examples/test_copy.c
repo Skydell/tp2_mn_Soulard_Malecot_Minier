@@ -208,7 +208,7 @@ int main (int argc, char **argv)
   for (int i = 0, j = 0; i < 4 && j < 4; i+=2, j +=3) {
     if (cf1[i].real != copy_cf4[j].real || cf1[i].imaginary != copy_cf4[j].imaginary){
       printf("Error index :\n");
-      printf("f[ %i ]  |  copy_f[ %i ]\n", i, j);
+      printf("f[ %i ]  |  copy_f[ %i ]\n", i, i);
       printf("%f + i * %f != %f + i * %f \n", cf1[i].real, cf1[i].imaginary, copy_cf4[j].real, copy_cf4[j].imaginary);
     }
   }
@@ -247,11 +247,6 @@ int main (int argc, char **argv)
 
   mncblas_zcopy(4, cd, 2, copy_cd2, 2);
 
-  for (size_t i = 0; i < 4; i++) {
-      printf("%f +i %f\n", copy_cd2[i].real, copy_cd2[i].imaginary);
-  }
-
-
   printf("Increment 2 :\n");
   for (int i = 0; i < 4; i+=2) {
     if (cd[i].real != copy_cd2[i].real || cd[i].imaginary != copy_cd2[i].imaginary){
@@ -284,7 +279,7 @@ int main (int argc, char **argv)
   for (int i = 0, j = 0; i < 4 && j < 4; i+=2, j +=3) {
     if (cd[i].real != copy_cd4[j].real || cd[i].imaginary != copy_cd4[j].imaginary){
       printf("Error index :\n");
-      printf("f[ %i ]  |  copy_f[ %i ]\n", i, j);
+      printf("f[ %i ]  |  copy_f[ %i ]\n", i, i);
       printf("%f + i * %f != %f + i * %f \n", cd[i].real, cd[i].imaginary, copy_cd4[j].real, copy_cd4[j].imaginary);
     }
   }
