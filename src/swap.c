@@ -42,8 +42,8 @@ void mncblas_cswap(const int N, void *X, const int incX,
   register unsigned int j = 0 ;
   register void *save ;
 
-  void **x = (void **)x;
-  void **y = (void **)y;
+  void **x = (void **)X;
+  void **y = (void **)Y;
   
   for (; ((i < N) && (j < N)) ; i += incX, j+=incY)
     {
@@ -62,8 +62,8 @@ void mncblas_zswap(const int N, void *X, const int incX,
   register unsigned int j = 0 ;
   register void *save ;
 
-  void **x = (void **)x;
-  void **y = (void **)y;
+  void **x = (void **)X;
+  void **y = (void **)Y;
   
   for (; ((i < N) && (j < N)) ; i += incX, j+=incY)
     {

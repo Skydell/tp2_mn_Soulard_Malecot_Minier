@@ -31,7 +31,7 @@ void cblas_cgemv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE trans, const i
 	resalpha.real = alpha;
 	resalpha.imaginary = 0;
 	for(int i = 0;i<m*n;i++){
-		((complexe_float_t*)a)[i] = mult_complexe_float(((complexe_float_t*)a)[i], resalpha);
+		((complexe_float_t*)a)[i]&&&&&& = mult_complexe_float(((complexe_float_t*)a)[i], resalpha);
 	}
 	for(int j = 0; j<n; j++){
 		complexe_float_t sum = malloc(sizeof(complexe_float_t));
