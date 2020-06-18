@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <x86intrin.h>
 
-#include "../src/asum.c"
+#include "../include/mnblas.h"
+#include "../include/complexe2.h"
 
 #include "flop.h"
 
