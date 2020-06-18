@@ -74,8 +74,5 @@ test_gemm: test_gemm.o flop.o  $(LIB_DIR)/libmnblas.a
 	gcc -o test_gemm test_gemm.o flop.o $(OPTIONS_LINK_STATIC)
 
 clean:
-<<<<<<< HEAD
+
 	rm -f *.o test_dot test_dot_dyn test_complexe test_complexe2 test_asum test_swap test_copy test_axpy test_nrm2 test_gemm *~
-=======
-	rm -f *.o pref_dot pref_dot_dyn test_complexe test_complexe2 test_asum test_swap test_copy test_axpy *~
->>>>>>> 4700b771f2f00d48aabb3d5a806c48ac2bf58b46
