@@ -80,7 +80,7 @@ int main (int argc, char **argv)
   g2[2] = 19.329383;
 
   for (size_t i = 0; i < 3; i+=2) {
-    prod_2f2[i] = 5.76*f[i] + g[i];
+    prod_2f2[i] = 5.76*f2[i] + g2[i];
   }
 
   cblas_daxpy(3, 5.76, f2, 2, g2, 2);
