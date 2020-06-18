@@ -21,7 +21,7 @@ void cblas_sgemv(const int m, const int n, const float alpha, const float *a, co
 	free(inter);
 }
 
-void cblas_dgemv(const int m, const int n, const double alpha, const void *a, const int lda, const void *x, const int incx, const void *beta, void *y, const int incy){
+void cblas_dgemv(const int m, const int n, const double alpha, const void *a, const int lda, const void *x, const int incx, const void *beta, double *y, const int incy){
 	for(int i = 0;i<m*n;i++){
 		((double*)a)[i] = ((double*)a)[i]*alpha;
 	}
@@ -30,7 +30,7 @@ void cblas_dgemv(const int m, const int n, const double alpha, const void *a, co
 		for(int i = 0; i<m; i+=incx){
 			sum += ((double*)a)[i+j*n]*((double*)x)[i];
 		}
-		((double*)y)[j] = sum + ((double*)y)[j]*((double *)beta)[0];
+		y[j] = sum + y[j]*((double *)beta)[0];
 	}
 }
 
