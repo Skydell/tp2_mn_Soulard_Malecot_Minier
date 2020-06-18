@@ -29,7 +29,7 @@ double mncblas_ddot(const int N, const double *X, const int incX,
   return dot ;
 }
 
-void   mncblas_cdotu_sub(const int N, const void *X, const int incX,
+void mncblas_cdotu_sub(const int N, const void *X, const int incX,
                        const void *Y, const int incY, void *dotu)
 {
 	register unsigned int i = 0 ;
@@ -44,7 +44,7 @@ void   mncblas_cdotu_sub(const int N, const void *X, const int incX,
 }
 
 
-void   mncblas_zdotu_sub(const int N, const void *X, const int incX,
+void mncblas_zdotu_sub(const int N, const void *X, const int incX,
                        const void *Y, const int incY, void *dotu)
 {
 	register unsigned int i = 0 ;
