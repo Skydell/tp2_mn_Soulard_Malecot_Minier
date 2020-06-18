@@ -1,4 +1,4 @@
-all: test_complexe2 test_complexe test_dot test_dot_dyn test_asum test_swap test_copy test_axpy test_nrm2 test_gemv
+all: test_complexe2 test_complexe perf_dot perf_dot_dyn test_asum test_swap test_copy test_axpy test_nrm2 test_gemm test_gemv
 
 INC_DIR=../include
 
@@ -72,5 +72,11 @@ test_gemv.o: test_gemv.c  $(INC_DIR)/complexe.h
 test_gemv: test_gemv.o flop.o  $(LIB_DIR)/libmnblas.a
 	gcc -o test_gemv test_gemv.o flop.o $(OPTIONS_LINK_STATIC)
 
+test_gemm.o: test_gemm.c  $(INC_DIR)/complexe.h
+	gcc $(OPTIONS_COMPIL) -c test_gemm.c
+
+test_gemm: test_gemm.o flop.o  $(LIB_DIR)/libmnblas.a
+	gcc -o test_gemm test_gemm.o flop.o $(OPTIONS_LINK_STATIC)
+
 clean:
-	rm -f *.o test_dot test_dot_dyn test_complexe test_complexe2 test_asum test_swap test_copy test_axpy test_gemv *~
+	rm -f *.o perf_dot perf_dot_dyn test_complexe test_complexe2 test_asum test_swap test_copy test_axpy test_nrm2 test_gemm test_gemv*~
