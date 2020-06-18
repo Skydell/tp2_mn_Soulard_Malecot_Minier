@@ -192,7 +192,7 @@ int main (int argc, char **argv)
 
   complexe_float_t a4[1];
   a4[0].real = 1;
-  a4[0].imaginary = 2;
+  a4[0].imaginary = 2.7;
 
   for (size_t i = 0; i < 3; i++) {
     f4[i].real = i+4.89328 + i/10000;
@@ -202,9 +202,10 @@ int main (int argc, char **argv)
   }
 
   for (size_t i = 0; i < 3; i++) {
-    prod_4f1[i].real = f4[i].real - 2*f4[i].imaginary + g4[i].real;
-    prod_4f1[i].imaginary = f4[i].imaginary - 2*f4[i].real + g4[i].imaginary;
+    prod_4f1[i].real = f4[i].real - 2.7*f4[i].imaginary + g4[i].real;
+    prod_4f1[i].imaginary = f4[i].imaginary - 2.7*f4[i].real + g4[i].imaginary;
   }
+
 
   printf("Vecteurs :\n");
   printf(" f = { ");
@@ -235,8 +236,8 @@ int main (int argc, char **argv)
 
 
   for (size_t i = 0; i < 3; i++) {
-    g4[i].real = i+32.43 + i/100;
-    g4[i].imaginary = i-22 + i/100;
+    g4[i].real = i+32.43222 + i/10000;
+    g4[i].imaginary = i+22.2 + i/10000;
   }
 
   for (size_t i = 0; i < 3; i+=2) {
@@ -253,7 +254,7 @@ int main (int argc, char **argv)
       printf("%f + i* %f != %f + i* %f\n",g4[i].real, g4[i].imaginary, prod_4f2[i].real, prod_4f2[i].imaginary);
     }
   }
-  printf("Fin increment 2 et 1 = -1\n");
+  printf("Fin increment 2 et A = -1\n");
 
   exit (0) ;
 }

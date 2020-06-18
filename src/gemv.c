@@ -4,9 +4,9 @@ void cblas_sgemv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE trans, const i
 	for(int i = 0;i<m*n;i++){
 		a[i] = a[i]*alpha;
 	}
-	for(int j = 0; j<n; j++){
+	for(int j = 0; j<n; j+=incy){
 		float sum = 0;
-		for(int i = 0; i<m; i++){
+		for(int i = 0; i<m; i+=incx){
 			sum += a[i]*x[i];
 		}
 		y[j] = sum + y[j]*beta;
@@ -17,9 +17,9 @@ void cblas_dgemv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE trans, const i
 	for(int i = 0;i<m*n;i++){
 		((double*)a)[i] = ((double*)a)[i]*alpha;
 	}
-	for(int j = 0; j<n; j++){
+	for(int j = 0; j<n; j+=incy){
 		double sum = 0;
-		for(int i = 0; i<m; i++){
+		for(int i = 0; i<m; i+=incx){
 			sum += ((double*)a)[i]*((double*)x)[i];
 		}
 		((double*)y)[j] = sum + ((double*)y)[j]*beta;
@@ -31,13 +31,13 @@ void cblas_cgemv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE trans, const i
 	resalpha.real = alpha;
 	resalpha.imaginary = 0;
 	for(int i = 0;i<m*n;i++){
-		((complexe_float_t*)a)[i]&&&&&& = mult_complexe_float(((complexe_float_t*)a)[i], resalpha);
+		((complexe_float_t*)a)[i] = mult_complexe_float(((complexe_float_t*)a)[i], resalpha);
 	}
-	for(int j = 0; j<n; j++){
+	for(int j = 0; j<n; j+=incy){
 		complexe_float_t sum = malloc(sizeof(complexe_float_t));
 		sum.real = 0;
 		sum.imaginary = 0;
-		for(int i = 0; i<m; i++){
+		for(int i = 0; i<m; i+=incx){
 			sum = add_complexe_float( mult_complexe_float(((complexe_float_t*)a)[i], ((complexe_float_t*)x)[i]), sum);
 		}
 		complexe_double_t resbeta = malloc(sizeof(complexe_float_t));
@@ -54,11 +54,11 @@ void cblas_zgemv(const CBLAS_LAYOUT Layout, const CBLAS_TRANSPOSE trans, const i
 	for(int i = 0;i<m*n;i++){
 		((complexe_double_t*)a)[i] = mult_complexe_double(((complexe_double_t*)a)[i], resalpha);
 	}
-	for(int j = 0; j<n; j++){
+	for(int j = 0; j<n; j+incy){
 		complexe_double_t sum = malloc(sizeof(complexe_double_t));
 		sum.real = 0;
 		sum.imaginary = 0;
-		for(int i = 0; i<m; i++){
+		for(int i = 0; i<m; i+incx){
 			sum = add_complexe_double( mult_complexe_double(((complexe_double_t*)a)[i], ((complexe_double_t*)x)[i]), sum);
 		}
 		complexe_double_t resbeta = malloc(sizeof(complexe_double_t));
