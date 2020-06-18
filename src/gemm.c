@@ -2,6 +2,7 @@
 #include "../include/mnblas.h"
 
 void cblas_sgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, MNCBLAS_TRANSPOSE TransB, const int m, const int n, const int k, const float alpha, const float *a, const int lda, const float *b, const int ldb, const float beta, float *c, const int ldc) {
+	#pragma omp parallel for
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
 			c[i*n+j] = c[i*n+j] * beta;
@@ -16,6 +17,7 @@ void cblas_sgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, MNCBLAS_TRANSP
 } 
 
 void cblas_dgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, MNCBLAS_TRANSPOSE TransB, const int m, const int n, const int k, const double alpha, const double *a, const int lda, const double *b, const int ldb, const double beta, double *c, const int ldc) {
+	#pragma omp parallel for
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
 			c[i*n+j] = c[i*n+j] * beta;
@@ -30,6 +32,7 @@ void cblas_dgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, MNCBLAS_TRANSP
 } 
 
 void cblas_cgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, MNCBLAS_TRANSPOSE TransB, const int m, const int n, const int k, const void *alpha, const void *a, const int lda, const void *b, const int ldb, const void *beta, void *c, const int ldc) {
+	#pragma omp parallel for
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
 			*(((complexe_float_t **)c)[i*n+j]) = mult_complexe_float(*(((complexe_float_t **)c)[i*n+j]), *((complexe_float_t *)beta));
@@ -44,6 +47,7 @@ void cblas_cgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, MNCBLAS_TRANSP
 } 
 
 void cblas_zgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, MNCBLAS_TRANSPOSE TransB, const int m, const int n, const int k, const void *alpha, const void *a, const int lda, const void *b, const int ldb, const void *beta, void *c, const int ldc) {
+	#pragma omp parallel for
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
 			*(((complexe_double_t **)c)[i*n+j]) = mult_complexe_double(*(((complexe_double_t **)c)[i*n+j]), *((complexe_double_t *)beta));
