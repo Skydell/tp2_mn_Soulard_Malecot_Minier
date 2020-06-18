@@ -1,4 +1,4 @@
-all: test_complexe2 test_complexe test_dot test_dot_dyn test_asum test_swap test_copy
+all: test_complexe2 test_complexe test_dot test_dot_dyn test_asum test_swap test_copy test_nrm2
 
 INC_DIR=../include
 
@@ -53,6 +53,12 @@ test_copy.o: test_copy.c  $(INC_DIR)/complexe.h
 
 test_copy: test_copy.o flop.o  $(LIB_DIR)/libmnblas.a
 	gcc -o test_copy test_copy.o flop.o $(OPTIONS_LINK_STATIC)
+
+test_nrm2.o: test_nrm2.c  $(INC_DIR)/complexe.h
+	gcc $(OPTIONS_COMPIL) -c test_nrm2.c -lm
+
+test_nrm2: test_nrm2.o flop.o
+	gcc -o test_nrm2 test_nrm2.o flop.o $(OPTIONS_LINK_STATIC) -lm
 
 clean:
 	rm -f *.o test_dot test_dot_dyn test_complexe test_complexe2 test_asum test_swap test_copy *~
