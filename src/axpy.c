@@ -25,7 +25,7 @@ void cblas_caxpy (const int n, const void *a, const void *x, const int incx, voi
 	complexe_float_t mult;
   
 	for(; (i < n) && (j < n); i +=  incx, j += incy) {
-		mult = mult_complexe_float(*((complexe_float_t *)a), *(((complexe_float_t **)x)[i]));
+		mult = mult_complexe_float((*(complexe_float_t *)a), (((complexe_float_t *)x)[i]));
 		(((complexe_float_t *)y)[i]).real = mult.real + (((complexe_float_t *)y)[j]).real;
 		(((complexe_float_t *)y)[j]).imaginary = mult.imaginary + (((complexe_float_t *)y)[j]).imaginary;
 	}
@@ -37,7 +37,7 @@ void cblas_zaxpy (const int n, const void *a, const void *x, const int incx, voi
 	complexe_double_t mult;
 	
 	for(; (i < n) && (j < n); i +=  incx, j += incy) {
-		mult = mult_complexe_double(*((complexe_double_t *)a), *(((complexe_double_t **)x)[i]));
+		mult = mult_complexe_double(*((complexe_double_t *)a), (((complexe_double_t *)x)[i]));
 		(((complexe_double_t *)y)[i]).real = mult.real + (((complexe_double_t *)y)[j]).real;
 		(((complexe_double_t *)y)[j]).imaginary = mult.imaginary + (((complexe_double_t *)y)[j]).imaginary;
 	}
