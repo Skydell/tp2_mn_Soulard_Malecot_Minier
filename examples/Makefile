@@ -55,4 +55,4 @@ test_copy: test_copy.o flop.o  $(LIB_DIR)/libmnblas.a
 	gcc -o test_copy test_copy.o flop.o $(OPTIONS_LINK_STATIC)
 
 clean:
-	rm -f *.o test_dot test_dot_dyn test_complexe test_complexe2 test_asum test_swap test_copy*~
+	rm -f *.o test_dot test_dot_dyn test_complexe test_complexe2 test_asum test_swap test_copy *~
