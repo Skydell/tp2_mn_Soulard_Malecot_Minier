@@ -23,7 +23,7 @@ int main (int argc, char **argv)
   printf("Vecteurs :\n f = {3.7, 8.2, -2.98}\n g = {9.8, 1.22, 9.33}\n");
   printf("Increment 1 et A = 2 :\n");
   for (int i = 0; i < 3; i++) {
-    if (g[i] != prod_f1[i]){
+    if (g[i] > prod_f1[i] + 0.001 || g[i] < prod_f1[i] - 0.001){
       printf("Error index : %i\n", i);
       printf("%f != %f \n",g[i], prod_f1[i]);
     }
@@ -44,7 +44,7 @@ int main (int argc, char **argv)
 
   printf("Increment 2 et A = 5:\n");
   for (int i = 0; i < 3; i+=2) {
-    if (g[i] != prod_f2[i]){
+    if (g[i] > prod_f2[i] + 0.001 || g[i] < prod_f2[i] - 0.001){
       printf("Error index : %i\n", i);
       printf("%f != %f\n",g[i], prod_f2[i]);
     }
@@ -66,7 +66,7 @@ int main (int argc, char **argv)
   printf("Vecteurs :\n f = {3.723891, -7.22938, -21.92348}\n g = {9.82937, -1.22O12, 19.329383}\n");
   printf("Increment 1 et A = 28.4 :\n");
   for (int i = 0; i < 3; i++) {
-    if (g2[i] != prod_2f1[i]){
+    if (g2[i] > prod_2f1[i] + 0.001 || g2[i] < prod_2f1[i] - 0.001){
       printf("Error index : %i\n", i);
       printf("%f != %f \n",g2[i], prod_2f1[i]);
     }
@@ -87,7 +87,7 @@ int main (int argc, char **argv)
 
   printf("Increment 2 et A = 5.76:\n");
   for (int i = 0; i < 3; i+=2) {
-    if (g2[i] != prod_2f2[i]){
+    if (g2[i] > prod_2f2[i] + 0.001 || g2[i] < prod_2f2[i] - 0.001){
       printf("Error index : %i\n", i);
       printf("%f != %f\n",g2[i], prod_2f2[i]);
     }
@@ -108,7 +108,7 @@ int main (int argc, char **argv)
 
   printf("Increment 1 et A = 3.28:\n");
   for (int i = 0; i < 3; i+=2) {
-    if (g2[i] != prod_2f3[i]){
+    if (g2[i] > prod_2f3[i] + 0.001 || g2[i] < prod_2f3[i] - 0.001){
       printf("Error index : %i\n", i);
       printf("%f != %f\n",g2[i], prod_2f2[i]);
     }
@@ -151,7 +151,7 @@ int main (int argc, char **argv)
 
   printf("Increment 1 et A = 3.7 :\n");
   for (int i = 0; i < 3; i++) {
-    if (g3[i].real != prod_3f1[i].real || g3[i].imaginary != prod_3f1[i].imaginary){
+    if (g3[i].real < prod_3f1[i].real-0.001 || g3[i].real > prod_3f1[i].real +0.001 || g3[i].imaginary < prod_3f1[i].imaginary-0.001 || g3[i].imaginary > prod_3f1[i].imaginary + 0.001){
       printf("Error index : %i\n", i);
       printf("%f + i* %f != %f + i* %f\n",g3[i].real, g3[i].imaginary, prod_3f1[i].real, prod_3f1[i].imaginary);
     }
@@ -178,7 +178,7 @@ int main (int argc, char **argv)
 
   printf("Increment 2 et A = 2 + i:\n");
   for (int i = 0; i < 3; i+=2) {
-    if (g3[i].real != prod_3f2[i].real || g3[i].imaginary != prod_3f2[i].imaginary){
+    if (g3[i].real > prod_3f2[i].real + 0.001 || g3[i].real < prod_3f2[i].real -0.001 || g3[i].imaginary > prod_3f2[i].imaginary+ 0.001 || g3[i].imaginary < prod_3f2[i].imaginary - 0.001){
       printf("Error index : %i\n", i);
       printf("%f + i* %f != %f + i* %f\n",g3[i].real, g3[i].imaginary, prod_3f2[i].real, prod_3f2[i].imaginary);
     }
@@ -221,7 +221,7 @@ int main (int argc, char **argv)
 
   printf("Increment 1 et A = 1 + 2*i :\n");
   for (int i = 0; i < 3; i++) {
-    if (g4[i].real != prod_4f1[i].real || g4[i].imaginary != prod_4f1[i].imaginary){
+    if (g4[i].real < prod_4f1[i].real -0.001 || g4[i].real > prod_4f1[i].real + 0.001 || g4[i].imaginary > prod_4f1[i].imaginary + 0.001 || g4[i].imaginary < prod_4f1[i].imaginary - 0.001){
       printf("Error index : %i\n", i);
       printf("%f + i* %f != %f + i* %f\n",g4[i].real, g4[i].imaginary, prod_4f1[i].real, prod_4f1[i].imaginary);
     }
@@ -248,7 +248,7 @@ int main (int argc, char **argv)
 
   printf("Increment 2 et A = -1:\n");
   for (int i = 0; i < 3; i+=2) {
-    if (g4[i].real != prod_4f2[i].real || g4[i].imaginary != prod_4f2[i].imaginary){
+    if (g4[i].real < prod_4f2[i].real - 0.001 || g4[i].real > prod_4f2[i].real + 0.001 || g4[i].imaginary < prod_4f2[i].imaginary - 0.001 || g4[i].imaginary > prod_4f2[i].imaginary + 0.001){
       printf("Error index : %i\n", i);
       printf("%f + i* %f != %f + i* %f\n",g4[i].real, g4[i].imaginary, prod_4f2[i].real, prod_4f2[i].imaginary);
     }
