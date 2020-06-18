@@ -459,7 +459,7 @@ int main (int argc, char **argv)
 
   printf("Increment i = 6, j = 7 :\n");
   for (int i = 0, j = 0; i < 10 && j < 10; i+=6, j+=7)  {
-    if (cg2[j].real != cor_cf2[i].real || cg2[j].imaginary != cor_cf2[i].imaginary || cf2[i].real != cor_cg2[j].real || cf2[j].imaginary != cor_cg2[i].imaginary){
+    if (cg2[j].real != cor_cf2[i].real || cg2[j].imaginary != cor_cf2[i].imaginary || cf2[i].real != cor_cg2[j].real || cf2[i].imaginary != cor_cg2[j].imaginary){
       printf("Error index : %i\n", i);
       printf("%f + i * %f != %f + i * %f || %f + i * %f != %f + i * %f\n", cg2[j].real, cg2[j].imaginary, cor_cf2[i].real, cor_cf2[i].imaginary, cf2[i].real, cf2[i].imaginary, cor_cg2[j].real, cor_cg2[j].imaginary);
     }
