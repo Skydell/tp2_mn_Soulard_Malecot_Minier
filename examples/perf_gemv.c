@@ -15,10 +15,10 @@ typedef double vdouble [VECSIZE];
 typedef complexe_float_t* vscomplexe[VECSIZE];
 typedef complexe_double_t* vdcomplexe[VECSIZE];
 
-vfloat vec1;
-vdouble vec2;
-vscomplexe vec3;
-vdcomplexe vec4;
+vfloat vec1, vec2, mat1 ;
+vdouble vec3, vec4, mat2;
+vscomplexe vec5, vec6, mat3;
+vdcomplexe vec7, vec8, mat4;
 
 void vectorf_init (vfloat V, float x)
 {
@@ -69,9 +69,9 @@ void vectorcd_init (vdcomplexe V, double r, double im)
 void vector_print (vfloat V)
 {
   register unsigned int i ;
-
+  
   for (i = 0; i < VECSIZE; i++)
-    printf ("%f ", V[i]) ;
+  printf ("%f ", V[i]) ;
   printf ("\n") ;
   
   return ;
@@ -80,66 +80,86 @@ void vector_print (vfloat V)
 int main (int argc, char **argv)
 {
 	unsigned long long start, end ;
-	int i;
+	int i, m, n;
+	m = 256;
+	n = 256;
 	init_flop () ;
  
 	for (i = 0 ; i < NB_FOIS; i++)
 	{
-		vectorf_init (vec1, 35.0) ;
+		float alpha = 12;
+		float beta = 14.2;
+		vectorf_init (mat1, 149.25);
+		vectorf_init (vec1, 1.0) ;
+		vectorf_init (vec2, 0.0) ;
 
 		start = _rdtsc () ;
-		cblas_sasum(VECSIZE, vec1, 1) ;
+		cblas_sgemv(101, 111, m, n, alpha, mat1, 0, vec1, 1, beta, vec2, 1) ;
 		end = _rdtsc () ;
 
-		printf ("cblas_sasum %d : nombre de cycles: %Ld \n", i, end-start) ;
-		calcul_flop ("sasum ", 2 * VECSIZE, end-start) ; 
+		printf ("cblas_sgemv %d : nombre de cycles: %Ld \n", i, end-start) ;
+		calcul_flop ("sgemv ", 2 * VECSIZE, end-start) ; 
 	}
 	
 	printf("----------------------------------------\n");
 	
 	for (i = 0 ; i < NB_FOIS; i++)
 	{
-		vectord_init (vec2, 4891.14) ;
+		double alpha = 121.154658;
+		double beta = -14.4782;
+		vectord_init (mat2, 124.5556);
+		vectord_init (vec3, 4581.14) ;
+		vectord_init (vec4, 0.0) ;
 
 		start = _rdtsc () ;
-		cblas_dasum(VECSIZE, vec2, 1) ;
+		cblas_dgemv(101, 111, m, n, alpha, mat2, 0, vec3, 1, beta, vec4, 1) ;
 		end = _rdtsc () ;
 
-		printf ("cblas_dasum %d : nombre de cycles: %Ld \n", i, end-start) ;
-		calcul_flop ("dasum ", 2 * VECSIZE, end-start) ; 
+		printf ("cblas_dgemv %d : nombre de cycles: %Ld \n", i, end-start) ;
+		calcul_flop ("dgemv ", 2 * VECSIZE, end-start) ; 
 	 }
 	 
 	 printf("----------------------------------------\n");
 	   
 	for (i = 0 ; i < NB_FOIS; i++)
 	{
-		complexe_float_t* ac = malloc(sizeof(complexe_float_t));
-		ac->real = 125.223;
-		ac->imaginary = 1.56;
-		vectorcs_init (vec3, 3.5, 45.2) ;
+		complexe_float_t* alpha = malloc(sizeof(complexe_float_t));
+		complexe_float_t* beta = malloc(sizeof(complexe_float_t));
+		alpha->real = 124.12;
+		beta->real = 44542.13;
+		alpha->imaginary = 214.379;
+		beta->imaginary = 1897.1;
+		vectorcs_init (mat3, 1254.15, 78.1548);
+		vectorcs_init (vec5, 3.5, 45.2) ;
+		vectorcs_init (vec6, 0.0, 0.0) ;
 		
 		start = _rdtsc () ;
-		cblas_casum(VECSIZE, vec3, 1) ;
+		cblas_cgemv(101, 111, m, n, alpha, mat3, 0, vec5, 1, beta, vec6, 1) ;
 		end = _rdtsc () ;
 
-		printf ("cblas_casum %d : nombre de cycles: %Ld \n", i, end-start) ;
-		calcul_flop ("casum ", 2 * VECSIZE, end-start) ; 
+		printf ("cblas_cgemv %d : nombre de cycles: %Ld \n", i, end-start) ;
+		calcul_flop ("cgemv ", 2 * VECSIZE, end-start) ; 
 	}
 	
 	printf("----------------------------------------\n");
 	   
 	for (i = 0 ; i < NB_FOIS; i++)
 	{
-		complexe_double_t* ac = malloc(sizeof(complexe_double_t));
-		ac->real = 1205.223;
-		ac->imaginary = -61.56;
-		vectorcd_init (vec4, 4581.14, 457.13) ;
+		complexe_double_t* alpha = malloc(sizeof(complexe_double_t));
+		complexe_double_t* beta = malloc(sizeof(complexe_double_t));
+		alpha->real = 124.12;
+		beta->real = -44542.13;
+		alpha->imaginary = -214.379;
+		beta->imaginary = 1897.1;
+		vectorcd_init (mat4, 9812.124, -4567.24);
+		vectorcd_init (vec7, 4581.14, 457.13) ;
+		vectorcd_init (vec8, 0.0, 0.0) ;
 
 		start = _rdtsc () ;
-		cblas_zasum(VECSIZE, vec4, 1) ;
+		cblas_zgemv(101, 111, m, n, alpha, mat4, 0, vec7, 1, beta, vec8, 1) ;
 		end = _rdtsc () ;
 
-		printf ("cblas_zasum %d : nombre de cycles: %Ld \n", i, end-start) ;
-		calcul_flop ("zasum ", 2 * VECSIZE, end-start) ; 
+		printf ("cblas_zgemv %d : nombre de cycles: %Ld \n", i, end-start) ;
+		calcul_flop ("zgemv ", 2 * VECSIZE, end-start) ; 
 	}
 }
