@@ -217,7 +217,7 @@ int main (int argc, char **argv)
   }
   printf("%f + i * %f }\n\n", g4[2].real, g4[2].imaginary);
 
-  cblas_caxpy(3, a4, f4, 1, g4, 1);
+  cblas_zaxpy(3, a4, f4, 1, g4, 1);
 
   printf("Increment 1 et A = 1 + 2*i :\n");
   for (int i = 0; i < 3; i++) {
@@ -244,7 +244,7 @@ int main (int argc, char **argv)
     prod_4f2[i].imaginary = -1*f4[i].imaginary + g3[i].imaginary;
   }
 
-  cblas_caxpy(3, a5, f4, 2, g4, 2);
+  cblas_zaxpy(3, a5, f4, 2, g4, 2);
 
   printf("Increment 2 et A = -1:\n");
   for (int i = 0; i < 3; i+=2) {

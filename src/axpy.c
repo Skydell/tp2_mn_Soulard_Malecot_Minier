@@ -1,5 +1,6 @@
 #include "../include/mnblas.h"
 #include "../include/complexe2.h"
+#include <stdio.h>
 
 void cblas_saxpy (const int n, const float a, const float *x, const int incx, float *y, const int incy) {
 	register unsigned int i = 0 ;
