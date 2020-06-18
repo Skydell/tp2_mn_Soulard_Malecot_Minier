@@ -5,12 +5,15 @@
 
 void cblas_sgemv(const MNCBLAS_LAYOUT layout, const MNCBLAS_TRANSPOSE TransA, const int m, const int n, const float alpha, const float *a, const int lda, const float *x, const int incx, const float beta, float *y, const int incy){
 	float* inter = malloc(sizeof(float)*m*n);
+	#pragma omp parallel for
 	for(int i = 0; i<m*n; i++){
 		inter[i] = a[i];
 	}
+	#pragma omp parallel for
 	for(int i = 0;i<m*n;i++){
 		inter[i] = inter[i]*alpha;
 	}
+	#pragma omp parallel for
 	for(int j = 0; j<n; j+=incy){
 		float sum = 0;
 		for(int i = 0; i<m; i+=incx){
@@ -22,9 +25,11 @@ void cblas_sgemv(const MNCBLAS_LAYOUT layout, const MNCBLAS_TRANSPOSE TransA, co
 }
 
 void cblas_dgemv(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, const int m, const int n, const double alpha, const double *a, const int lda, const double *x, const int incx, const double beta, double *y, const int incy){
+	#pragma omp parallel for
 	for(int i = 0;i<m*n;i++){
 		((double*)a)[i] = ((double*)a)[i]*alpha;
 	}
+	#pragma omp parallel for
 	for(int j = 0; j<n; j+=incy){
 		double sum = 0;
 		for(int i = 0; i<m; i+=incx){
@@ -38,9 +43,11 @@ void cblas_cgemv(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, const int m, c
 	complexe_float_t* resalpha = malloc(sizeof(complexe_float_t));
 	resalpha->real = ((float *)alpha)[0];
 	resalpha->imaginary = 0;
+	#pragma omp parallel for
 	for(int i = 0;i<m*n;i++){
 		((complexe_float_t*)a)[i] = mult_complexe_float(((complexe_float_t*)a)[i], *resalpha);
 	}
+	#pragma omp parallel for
 	for(int j = 0; j<n; j+=incy){
 		complexe_float_t* sum = malloc(sizeof(complexe_float_t));
 		sum->real = 0;
@@ -59,9 +66,11 @@ void cblas_zgemv(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, const int m, c
 	complexe_double_t* resalpha = malloc(sizeof(complexe_double_t));
 	resalpha->real = ((double *)alpha)[0];
 	resalpha->imaginary = 0;
+	#pragma omp parallel for
 	for(int i = 0;i<m*n;i++){
 		((complexe_double_t*)a)[i] = mult_complexe_double(((complexe_double_t*)a)[i], *resalpha);
 	}
+	#pragma omp parallel for
 	for(int j = 0; j<n; j+=incy){
 		complexe_double_t* sum = malloc(sizeof(complexe_double_t));
 		sum->real = 0;
