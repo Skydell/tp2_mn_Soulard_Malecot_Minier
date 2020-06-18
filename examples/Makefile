@@ -1,4 +1,4 @@
-all: test_complexe2 test_complexe perf_dot perf_dot_dyn perf_copy perf_axpy perf_swap perf_gemv test_asum test_swap test_copy test_axpy test_nrm2 test_gemm test_gemv
+all: test_complexe2 test_complexe perf_dot perf_dot_dyn perf_copy perf_axpy perf_swap perf_gemv perf_gemm test_asum test_swap test_copy test_axpy test_nrm2 test_gemm test_gemv
 
 INC_DIR=../include
 
@@ -30,6 +30,9 @@ perf_swap: perf_swap.o flop.o $(LIB_DIR)/libmnblas.a
 perf_gemv: perf_gemv.o flop.o $(LIB_DIR)/libmnblas.a
 	gcc -o perf_gemv perf_gemv.o flop.o $(OPTIONS_LINK_STATIC)
 
+perf_gemm: perf_gemm.o flop.o $(LIB_DIR)/libmnblas.a
+	gcc -o perf_gemm perf_gemm.o flop.o $(OPTIONS_LINK_STATIC)
+
 flop.o: flop.c flop.h
 	gcc $(OPTIONS_COMPIL) -c flop.c
 
@@ -53,6 +56,9 @@ perf_swap.o: perf_swap.c $(INC_DIR)/mnblas.h
 
 perf_gemv.o: perf_gemv.c $(INC_DIR)/mnblas.h
 	gcc $(OPTIONS_COMPIL) -c perf_gemv.c
+
+perf_gemm.o: perf_gemm.c $(INC_DIR)/mnblas.h
+	gcc $(OPTIONS_COMPIL) -c perf_gemm.c
 
 test_complexe.o: test_complexe.c  $(INC_DIR)/complexe.h
 	gcc $(OPTIONS_COMPIL) -c test_complexe.c
@@ -109,5 +115,5 @@ test_gemm: test_gemm.o flop.o  $(LIB_DIR)/libmnblas.a
 	gcc -o test_gemm test_gemm.o flop.o $(OPTIONS_LINK_STATIC)
 
 clean:
-	rm -f *.o perf_dot perf_dot_dyn perf_copy perf_axpy perf_asum perf_swap perf_gemv test_complexe test_complexe2 test_asum test_swap test_copy test_axpy test_nrm2 test_gemm test_gemv*~
+	rm -f *.o perf_dot perf_dot_dyn perf_copy perf_axpy perf_asum perf_swap perf_gemv perf_gemm test_complexe test_complexe2 test_asum test_swap test_copy test_axpy test_nrm2 test_gemm test_gemv*~
 
