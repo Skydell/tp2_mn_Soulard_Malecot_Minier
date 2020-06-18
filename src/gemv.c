@@ -21,11 +21,7 @@ void cblas_sgemv(const MNCBLAS_LAYOUT layout, const MNCBLAS_TRANSPOSE TransA, co
 	free(inter);
 }
 
-<<<<<<< HEAD
-void cblas_dgemv(const int m, const int n, const double alpha, const void *a, const int lda, const void *x, const int incx, const void *beta, double *y, const int incy){
-=======
 void cblas_dgemv(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, const int m, const int n, const double alpha, const double *a, const int lda, const double *x, const int incx, const double beta, double *y, const int incy){
->>>>>>> d0316a31b4a13a8f4c3cb80fccffbf0e57e058db
 	for(int i = 0;i<m*n;i++){
 		((double*)a)[i] = ((double*)a)[i]*alpha;
 	}
@@ -34,11 +30,7 @@ void cblas_dgemv(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA, const int m, c
 		for(int i = 0; i<m; i+=incx){
 			sum += ((double*)a)[i+j*n]*((double*)x)[i];
 		}
-<<<<<<< HEAD
-		y[j] = sum + y[j]*((double *)beta)[0];
-=======
 		y[j] = sum + y[j]*beta;
->>>>>>> d0316a31b4a13a8f4c3cb80fccffbf0e57e058db
 	}
 }
 
