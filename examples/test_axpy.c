@@ -9,7 +9,7 @@
 
 int main (int argc, char **argv)
 {
-  printf("\n--- Test swap float : ---\n\n");
+  printf("\n--- Test axpy float : ---\n\n");
   float prod_f1[3];
   float f[3] = {3.7, 8.2, -2.98};
   float g[3] = {9.8, 1.22, 9.33};
@@ -28,7 +28,7 @@ int main (int argc, char **argv)
       printf("%f != %f \n",g[i], prod_f1[i]);
     }
   }
-  printf("->Fin increment 1\n\n");
+  printf("->Fin increment 1 et A = 2\n\n");
 
   float prod_f2[3];
 
@@ -49,10 +49,10 @@ int main (int argc, char **argv)
       printf("%f != %f\n",g[i], prod_f2[i]);
     }
   }
-  printf("->Fin increment 2\n\n");
+  printf("->Fin increment 2 et A = 5\n\n");
 
 
-  printf("\n--- Test swap double : ---\n\n");
+  printf("\n--- Test axpy double : ---\n\n");
   double prod_2f1[3];
   double f2[3] = {3.723891, -7.22938, -21.92348};
   double g2[3] = {9.82937, -1.2212, 19.329383};
@@ -71,7 +71,7 @@ int main (int argc, char **argv)
       printf("%f != %f \n",g2[i], prod_2f1[i]);
     }
   }
-  printf("->Fin increment 1\n\n");
+  printf("->Fin increment 1 et A = 28.4\n\n");
 
   float prod_2f2[3];
 
@@ -92,7 +92,7 @@ int main (int argc, char **argv)
       printf("%f != %f\n",g2[i], prod_2f2[i]);
     }
   }
-  printf("->Fin increment 2\n\n");
+  printf("->Fin increment 2 et A = 5.76\n\n");
 
   float prod_2f3[3];
 
@@ -113,9 +113,9 @@ int main (int argc, char **argv)
       printf("%f != %f\n",g2[i], prod_2f2[i]);
     }
   }
-  printf("->Fin increment 2\n\n");
+  printf("->Fin increment 1 et A = 3.28\n\n");
 
-  printf("\n--- Test swap Complexe float : ---\n\n");
+  printf("\n--- Test axpy Complexe float : ---\n\n");
   complexe_float_t prod_3f1[3];
   complexe_float_t f3[3];
   complexe_float_t g3[3];
@@ -156,7 +156,7 @@ int main (int argc, char **argv)
       printf("%f + i* %f != %f + i* %f\n",g3[i].real, g3[i].imaginary, prod_3f1[i].real, prod_3f1[i].imaginary);
     }
   }
-  printf("->Fin increment 1\n\n");
+  printf("->Fin increment 1 et A = 3.7\n\n");
 
   complexe_float_t prod_3f2[3];
   complexe_float_t a2[1];
@@ -183,8 +183,9 @@ int main (int argc, char **argv)
       printf("%f + i* %f != %f + i* %f\n",g3[i].real, g3[i].imaginary, prod_3f2[i].real, prod_3f2[i].imaginary);
     }
   }
+  printf("->Fin increment 2 et A = 2 + i\n\n");
 
-  printf("\n--- Test swap Complexe double : ---\n\n");
+  printf("\n--- Test axpy Complexe double : ---\n\n");
   complexe_float_t prod_4f1[3];
   complexe_float_t f4[3];
   complexe_float_t g4[3];
@@ -225,7 +226,7 @@ int main (int argc, char **argv)
       printf("%f + i* %f != %f + i* %f\n",g4[i].real, g4[i].imaginary, prod_4f1[i].real, prod_4f1[i].imaginary);
     }
   }
-  printf("->Fin increment 1\n\n");
+  printf("->Fin increment 1 et A = 1 + 2*i\n\n");
 
   complexe_float_t prod_4f2[3];
   complexe_float_t a5[1];
@@ -245,13 +246,14 @@ int main (int argc, char **argv)
 
   cblas_caxpy(3, a5, f4, 2, g4, 2);
 
-  printf("Increment 2 et A = 2 + i:\n");
+  printf("Increment 2 et A = -1:\n");
   for (int i = 0; i < 3; i+=2) {
     if (g4[i].real != prod_4f2[i].real || g4[i].imaginary != prod_4f2[i].imaginary){
       printf("Error index : %i\n", i);
       printf("%f + i* %f != %f + i* %f\n",g4[i].real, g4[i].imaginary, prod_4f2[i].real, prod_4f2[i].imaginary);
     }
   }
+  printf("Fin increment 2 et 1 = -1\n");
 
   exit (0) ;
 }
