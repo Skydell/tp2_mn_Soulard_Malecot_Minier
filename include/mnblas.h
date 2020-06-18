@@ -8,7 +8,7 @@ typedef enum {MNCblasLeft=141, MNCblasRight=142} MNCBLAS_SIDE;
 
 /*
  * ===========================================================================
- * Prototypes for level 1 BLAS functions 
+ * Prototypes for level 1 BLAS functions
  * ===========================================================================
  */
 
@@ -18,18 +18,18 @@ typedef enum {MNCblasLeft=141, MNCblasRight=142} MNCBLAS_SIDE;
 */
 
 
-void mncblas_scopy(const int N, const float *X, const int incX, 
+void mncblas_scopy(const int N, const float *X, const int incX,
                  float *Y, const int incY);
 
-void mncblas_dcopy(const int N, const double *X, const int incX, 
+void mncblas_dcopy(const int N, const double *X, const int incX,
                  double *Y, const int incY);
 
 
-void mncblas_ccopy(const int N, const void *X, const int incX, 
+void mncblas_ccopy(const int N, const void *X, const int incX,
                  void *Y, const int incY);
 
 
-void mncblas_zcopy(const int N, const void *X, const int incX, 
+void mncblas_zcopy(const int N, const void *X, const int incX,
                  void *Y, const int incY);
 
 
@@ -41,16 +41,16 @@ void mncblas_zcopy(const int N, const void *X, const int incX,
   BLAS SWAP
 */
 
-void mncblas_sswap(const int N, float *X, const int incX, 
+void mncblas_sswap(const int N, float *X, const int incX,
                  float *Y, const int incY);
 
-void mncblas_dswap(const int N, double *X, const int incX, 
+void mncblas_dswap(const int N, double *X, const int incX,
                  double *Y, const int incY);
 
-void mncblas_cswap(const int N, void *X, const int incX, 
+void mncblas_cswap(const int N, void *X, const int incX,
                  void *Y, const int incY);
 
-void mncblas_zswap(const int N, void *X, const int incX, 
+void mncblas_zswap(const int N, void *X, const int incX,
                  void *Y, const int incY);
 
 /*
@@ -90,7 +90,7 @@ void   mncblas_zdotc_sub(const int N, const void *X, const int incX,
   BLAS AXPY
 */
 
-/*
+
 
 void mnblas_saxpy(const int N, const float alpha, const float *X,
                  const int incX, float *Y, const int incY);
@@ -104,9 +104,9 @@ void mnblas_caxpy(const int N, const void *alpha, const void *X,
 void mnblas_zaxpy(const int N, const void *alpha, const void *X,
                  const int incX, void *Y, const int incY);
 
-*/
 
-/*
+
+
 
 float  mnblas_sasum(const int N, const float *X, const int incX);
 
@@ -116,7 +116,7 @@ float  mnblas_scasum(const int N, const void *X, const int incX);
 
 double mnblas_dzasum(const int N, const void *X, const int incX);
 
-*/
+
 
 /*
 CBLAS_INDEX mnblas_isamax(const int N, const float  *X, const int incX);
@@ -215,4 +215,3 @@ void mncblas_zgemm(MNCBLAS_LAYOUT layout, MNCBLAS_TRANSPOSE TransA,
                  const void *beta, void *C, const int ldc);
 
 */
-

@@ -1,4 +1,6 @@
-#include "mnblas.h"
+#include "../include/mnblas.h"
+#include <stdio.h>
+#include "../include/complexe2.h"
 
 void mncblas_scopy(const int N, const float *X, const int incX, 
                  float *Y, const int incY)
@@ -31,18 +33,14 @@ void mncblas_dcopy(const int N, const double *X, const int incX,
 void mncblas_ccopy(const int N, const void *X, const int incX, 
                         void *Y, const int incY)
 {
-  register unsigned int i = 0 ;
-  register unsigned int j = 0 ;
+	register unsigned int i = 0 ;
+	register unsigned int j = 0 ;
 
-  void **y = (void **)Y;
-  void **x = (void **)X;
-
-  for (; ((i < N) && (j < N)) ; i += incX, j += incY)
-    {
-      y [j] = x [i] ;
-    }
-
-  return ;
+	  for (; ((i < N) && (j < N)) ; i += incX, j += incY)
+		{
+			(((complexe_float_t*)Y)[j]).real = (((complexe_float_t*)X)[i]).real ;
+			(((complexe_float_t*)Y)[j]).imaginary = (((complexe_float_t*)X)[i]).imaginary ;
+		}
 }
 
 void mncblas_zcopy(const int N, const void *X, const int incX, 
@@ -51,15 +49,11 @@ void mncblas_zcopy(const int N, const void *X, const int incX,
   register unsigned int i = 0 ;
   register unsigned int j = 0 ;
 
-  void **y = (void **)Y;
-  void **x = (void **)X;
-
   for (; ((i < N) && (j < N)) ; i += incX, j += incY)
     {
-      y [j] = x [i] ;
+		(((complexe_double_t*)Y)[j]).real = (((complexe_double_t*)X)[i]).real ;
+		(((complexe_double_t*)Y)[j]).imaginary = (((complexe_double_t*)X)[i]).imaginary ;
     }
-
-  return ;
 }
 
 
